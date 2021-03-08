@@ -40,6 +40,8 @@ public class EllipseTest {
 	public static void main(String[] args) {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Random rng = new Random(12345);
+		Mat srcGray = new Mat();
+	    int threshold = 100;
 		
 		// TODO Auto-generated method stub
 		//https://blog.csdn.net/qq_33635860/article/details/78046838
@@ -51,8 +53,7 @@ public class EllipseTest {
             System.exit(0);
         }
         
-        Mat srcGray = new Mat();
-        int threshold = 100;
+     
         
         /// Convert image to gray and blur it
         //必须要有
