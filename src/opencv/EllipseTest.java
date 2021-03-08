@@ -41,12 +41,14 @@ public class EllipseTest {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Random rng = new Random(12345);
 		Mat srcGray = new Mat();
-	    int threshold = 100;
+	    int threshold = 60;
 		
 		// TODO Auto-generated method stub
 		//https://blog.csdn.net/qq_33635860/article/details/78046838
 		//https://ask.csdn.net/questions/914488
-		String filename = args.length > 0 ? args[0] : "src/data/stuff.jpg";
+		//String filename = args.length > 0 ? args[0] : "src/data/stuff.jpg";
+		String filename = "src/data/bridge/2020-12-24T130016.715.jpg";
+		
         Mat src = Imgcodecs.imread(filename);
         if (src.empty()) {
             System.err.println("Cannot read image: " + filename);
@@ -83,15 +85,22 @@ public class EllipseTest {
         	double s2=Math.PI*box.size.width*box.size.height/4;
         	System.out.println(s2+"====="+s3+"-----s2/s3="+s2/s3);
         	//面积比例，进行判断
-        	if(s2/s3>0.78) {
+        	//if(s2/s3>0.78) {
         		Imgproc.ellipse(src, box, new Scalar(0,0,255));
-        	}
+        	//}
         	
         }
         //! [draw]
 
+        //Imgcodecs.imwrite("src/data/bridge/result.jpg", src);
         
-        HighGui.imshow("寻找椭圆", src);
+        
+        //HighGui.namedWindow("寻找椭圆", 2x	);
+        
+        Mat minImg = new Mat();
+        //缩小，为了显示
+        Imgproc.resize(src, minImg, new Size(src.size().width/4,src.size().height/4));
+        HighGui.imshow("寻找椭圆", minImg);
         HighGui.waitKey(0);
         //![display]
 
